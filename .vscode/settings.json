@@ -2,7 +2,7 @@
     "python.testing.cwd": "repo/rootdir",
     "python.testing.pytestArgs": [
         "--rootdir", "${workspaceFolder}/repo/rootdir",
-        "package",
+        "--ignore", "scripts"
     ],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,

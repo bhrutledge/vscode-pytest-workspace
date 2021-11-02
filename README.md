@@ -64,3 +64,31 @@ Exception: pytest discovery failed (exit code 2)
 	at maybeClose (internal/child_process.js:1048:16)
 	at Process.ChildProcess._handle.onexit (internal/child_process.js:288:5)]
 ```
+
+To avoid that error, I can add `--ignore scripts` to `pytestArgs`, which allows test discovery and running to succeed:
+
+```
+> ~/Dev/vscode-pytest-workspace/venv/bin/python ~/.vscode-insiders/extensions/ms-python.python-2021.12.1409662628-dev/pythonFiles/testing_tools/run_adapter.py discover pytest -- -s --cache-clear --rootdir ~/Dev/vscode-pytest-workspace/repo/rootdir --ignore scripts ~/Dev/vscode-pytest-workspace/repo/rootdir
+cwd: ~/Dev/vscode-pytest-workspace/repo/rootdir
+
+> ~/Dev/vscode-pytest-workspace/venv/bin/python -m pytest --override-ini junit_family=xunit1 --junit-xml=/var/folders/bw/ttgk1hcs0k989q2yzmxkzn8c0000gp/T/tmp-65261jEOVCVjMxFJo.xml --rootdir ~/Dev/vscode-pytest-workspace/repo/rootdir --ignore scripts ./package/test_module.py::test_function
+cwd: ~/Dev/vscode-pytest-workspace/repo/rootdir
+
+Running tests (pytest): /Users/bhrutledge/Dev/vscode-pytest-workspace/repo/rootdir/package/test_module.py::test_function
+Running test with arguments: --override-ini junit_family=xunit1 --junit-xml=/var/folders/bw/ttgk1hcs0k989q2yzmxkzn8c0000gp/T/tmp-65261jEOVCVjMxFJo.xml --rootdir /Users/bhrutledge/Dev/vscode-pytest-workspace/repo/rootdir --ignore scripts ./package/test_module.py::test_function
+Current working directory: /Users/bhrutledge/Dev/vscode-pytest-workspace/repo/rootdir
+Workspace directory: /Users/bhrutledge/Dev/vscode-pytest-workspace
+Run completed, parsing output
+./package/test_module.py::test_function Passed
+
+Total number of tests expected to run: 1
+Total number of tests run: 1
+Total number of tests passed: 1
+Total number of tests failed: 0
+Total number of tests failed with errors: 0
+Total number of tests skipped: 0
+Total number of tests with no result data: 0
+Finished running tests!
+```
+
+However, given that `pytest` works from the command line (thanks to the `testpaths` option in `repo/rootdir/pytest.ini`), adding `--ignore` shouldn't be necessary.
