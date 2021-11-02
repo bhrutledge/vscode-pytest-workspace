@@ -1,5 +1,9 @@
 {
     "python.testing.cwd": "repo/rootdir",
+    "python.testing.pytestArgs": [
+        "--rootdir", "${workspaceFolder}/repo/rootdir",
+        "package",
+    ],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
     "terminal.integrated.cwd": "repo/rootdir"
