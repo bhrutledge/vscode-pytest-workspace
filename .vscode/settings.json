@@ -1,0 +1,8 @@
+{
+    "python.testing.pytestArgs": [
+        "repo"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "terminal.integrated.cwd": "repo/rootdir"
+}
